@@ -30,8 +30,7 @@ Este proyecto es parte del programa Oracle ONE: Next Education en colaboración 
 ## Capturas de Pantalla
 ![CurrencyConverter1](https://github.com/Dev-Totti/OracleONE-Challenge-Conversor-Monedas/assets/92545913/54bd9894-e1aa-40ae-8606-996dec8da251)
 ![CurrencyConverter2](https://github.com/Dev-Totti/OracleONE-Challenge-Conversor-Monedas/assets/92545913/9de5dcde-af53-4980-92b6-2f4c5b119594)
-
 ---
 <p align="center">
-  <img src="https://github.com/Dev-Totti/OracleONE-Challenge-Encriptador/assets/92545913/313bbac8-302f-494b-a8e0-1afa1798eeea" width="300px">
+  <img src="https://github.com/Dev-Totti/OracleONE-Challenge-Conversor-Monedas/assets/92545913/81c11650-9859-4cc8-925f-bf798c5b1a4f" width="300px">
 </p>
