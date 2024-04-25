@@ -2,7 +2,6 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-operations_history.txt
 
 ### Eclipse ###
 .apt_generated
@@ -28,4 +27,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
 /operations_history.json

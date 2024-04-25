@@ -1,4 +1,4 @@
-import com.devtotti.Menu;
+package com.devtotti;
 
 public class Main {
     public static void main(String[] args) {

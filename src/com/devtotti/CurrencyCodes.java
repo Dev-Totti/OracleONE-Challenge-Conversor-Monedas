@@ -157,9 +157,9 @@ public class CurrencyCodes {
         currencyCodes.put("UYU", "Uruguayan Peso");
         currencyCodes.put("UZS", "Uzbekistan Som");
         currencyCodes.put("VES", "Venezuelan Bolívar");
-        currencyCodes.put("VND", "Vietnamese Đồng");
+        currencyCodes.put("VND", "Vietnamese Dong");
         currencyCodes.put("VUV", "Vanuatu Vatu");
-        currencyCodes.put("WST", "Samoan Tālā");
+        currencyCodes.put("WST", "Samoan Tala");
         currencyCodes.put("XAF", "Central African CFA Franc");
         currencyCodes.put("XCD", "Eastern Caribbean Dollar");
         currencyCodes.put("XDR", "Special Drawing Rights");

@@ -17,7 +17,7 @@ public class Menu {
         System.out.println("[6] Convertir ARS a USD");
         System.out.println("\n[7] Convertir otras monedas");
         System.out.println("[8] Ver historial de operaciones");
-        System.out.println("[9] Salir");
+        System.out.println("[0] Salir");
     }
 
     public static void displayOpMenu(CurrencyPair currencyPair) {
@@ -56,7 +56,7 @@ public class Menu {
         while (true) {
             try {
             System.out.println("Para regresar al menú principal, escriba '0'");
-                System.out.print("\nIngrese la cantidad a convertir : ");
+                System.out.print("Ingrese la cantidad a convertir : ");
                 double amount = scanner.nextDouble();
 
                 if (amount < 0) {
@@ -75,13 +75,14 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nPara ver los códigos de moneda, escriba 'CODES'");
-            System.out.println("Para regresar al menú principal, escriba '0'");
-            System.out.print("\nIngrese el codigo de la moneda " + text + ": ");
+            System.out.println("\nPara ver los códigos de moneda, escriba 'CODES' | Para regresar al menú principal, escriba '0'");
+//            System.out.println("Para regresar al menú principal, escriba '0'");
+            System.out.print("Ingrese el codigo de la moneda " + text + ": ");
 
             String currency = scanner.nextLine().toUpperCase();
             if (currencyCodes.isValidCurrencyCode(currency)) {
-                System.out.printf("Moneda Seleccionada: %s (%s)\n", currency, currencyCodes.getCurrencyName(currency));
+                System.out.printf("\nMoneda Seleccionada: %s (%s)\n", currency, currencyCodes.getCurrencyName(currency));
+                System.out.println("-------------------------------------------------");
                 return currency;
             } else if (currency.equals("0")) {
                 return null;
@@ -134,13 +135,17 @@ public class Menu {
                 waitForEnter();
                 continue;
 
-            } else if (option == 9) {
+            } else if (option == 0) {
                 return;
             }
 
             CurrencyPair currencyPair = processUserInput(option);
 
-            while (currencyPair != null) {
+            if (currencyPair == null) {
+                continue;
+            }
+
+            while (true) {
                 displayOpMenu(currencyPair);
                 double fromAmount = getUserAmount();
 
