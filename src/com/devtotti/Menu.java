@@ -2,9 +2,12 @@ package com.devtotti;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
+    public static List<CurrencyOperation> history = History.loadHistory();
     public static CurrencyCodes currencyCodes = new CurrencyCodes();
 
     public static void displayMainMenu() {
@@ -28,23 +31,6 @@ public class Menu {
                 currencyPair.toCurrency(),
                 currencyCodes.getCurrencyName(currencyPair.toCurrency())
         );
-    }
-
-    public static void displayHistory() {
-        System.out.println("\nHistorial de operaciones: \n");
-        try {
-            File myHistory = new File("operations_history.txt");
-            Scanner myReader = new Scanner(myHistory);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("No se encontró el archivo");
-        } finally {
-            waitForEnter();
-        }
     }
 
     public static void waitForEnter() {
@@ -147,7 +133,8 @@ public class Menu {
             int option = getUserChoice();
 
             if (option == 8) {
-                displayHistory();
+                History.displayHistory(history);
+                waitForEnter();
                 continue;
 
             } else if (option == 9) {
@@ -167,7 +154,8 @@ public class Menu {
                 try {
                     CurrencyOperation currencyOp = new CurrencyOperation(currencyPair, fromAmount);
                     System.out.println("\n" + currencyOp);
-                    currencyOp.writeToFile();
+                    history.add(currencyOp);
+                    History.saveHistory(history);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 } finally {

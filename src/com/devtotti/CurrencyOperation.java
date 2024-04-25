@@ -1,19 +1,16 @@
 package com.devtotti;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class CurrencyOperation {
-    private final LocalDateTime datetime;
+    private final String datetime;
     private final CurrencyPair currencyPair;
     private final double exchangeRate;
     private final double fromAmount;
     private final double toAmount;
 
     public CurrencyOperation(CurrencyPair currencyPair, double fromAmount) {
-        this.datetime = LocalDateTime.now();
+        this.datetime = LocalDateTime.now().toString();
         this.currencyPair = currencyPair;
         this.exchangeRate = ExchangeRatesAPI.getExchangeRate(currencyPair);
         if (exchangeRate == -1) {
@@ -23,20 +20,10 @@ public class CurrencyOperation {
         this.toAmount = fromAmount * exchangeRate;
     }
 
-    public void writeToFile() {
-        try {
-            FileWriter myWriter = new FileWriter("operations_history.txt", true);
-            myWriter.write(this.toString() + "\n");
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println("Error al escribir en el archivo");
-        }
-    }
-
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        String datetime = this.datetime.format(formatter);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+//        String datetime = this.datetime.format(formatter);
         return "%s | %s: %f | %.2f %s = %.2f %s".formatted(datetime, currencyPair, exchangeRate, fromAmount, currencyPair.fromCurrency(), toAmount, currencyPair.toCurrency());
     }
 }
