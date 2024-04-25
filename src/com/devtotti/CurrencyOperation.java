@@ -3,6 +3,7 @@ package com.devtotti;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CurrencyOperation {
     private final LocalDateTime datetime;
@@ -34,7 +35,9 @@ public class CurrencyOperation {
 
     @Override
     public String toString() {
-        return "%s | Tasa de Cambio (%s): %f | %.2f %s = %.2f %s".formatted(datetime, currencyPair, exchangeRate, fromAmount, currencyPair.fromCurrency(), toAmount, currencyPair.toCurrency());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String datetime = this.datetime.format(formatter);
+        return "%s | %s: %f | %.2f %s = %.2f %s".formatted(datetime, currencyPair, exchangeRate, fromAmount, currencyPair.fromCurrency(), toAmount, currencyPair.toCurrency());
     }
 }
 
