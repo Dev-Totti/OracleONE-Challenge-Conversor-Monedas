@@ -1,5 +1,3 @@
-import com.devtotti.CurrencyOperation;
-import com.devtotti.CurrencyPair;
 import com.devtotti.Menu;
 
 public class Main {

@@ -9,11 +9,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class History {
-    public static List<CurrencyOperation> loadHistory() {
+public class History  {
+    private String jsonFilePath;
+    private List<CurrencyOperation> history;
+
+    public History(String jsonFilePath){
+        this.jsonFilePath = jsonFilePath;
+        this.history = loadHistory();
+    }
+
+    public List<CurrencyOperation> loadHistory() {
         Gson gson = new Gson();
         try {
-            FileReader myReader = new FileReader("operations_history.json");
+            FileReader myReader = new FileReader(jsonFilePath);
             CurrencyOperation[] history = gson.fromJson(myReader, CurrencyOperation[].class);
             return new ArrayList<>(Arrays.asList(history));
         } catch (FileNotFoundException e) {
@@ -25,10 +33,10 @@ public class History {
         }
     }
 
-    public static void saveHistory(List<CurrencyOperation> history) {
+    public void saveHistory() {
         Gson gson = new Gson();
         try {
-            FileWriter myWriter = new FileWriter("operations_history.json");
+            FileWriter myWriter = new FileWriter(jsonFilePath);
             myWriter.write(gson.toJson(history));
             myWriter.close();
         } catch (Exception e) {
@@ -36,11 +44,18 @@ public class History {
         }
     }
 
-    public static void displayHistory(List<CurrencyOperation> history) {
-        System.out.println("\nHistorial de operaciones: \n");
+    public void add(CurrencyOperation operation) {
+        history.add(operation);
+        saveHistory();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         for (CurrencyOperation operation : history) {
-            System.out.println(operation);
+            sb.append(operation.toString()).append("\n");
         }
+        return sb.toString();
     }
 }
 

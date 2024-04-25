@@ -1,13 +1,10 @@
 package com.devtotti;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    public static List<CurrencyOperation> history = History.loadHistory();
+    public static History history = new History("operations_history.json");
+
     public static CurrencyCodes currencyCodes = new CurrencyCodes();
 
     public static void displayMainMenu() {
@@ -133,7 +130,7 @@ public class Menu {
             int option = getUserChoice();
 
             if (option == 8) {
-                History.displayHistory(history);
+                System.out.println(history);
                 waitForEnter();
                 continue;
 
@@ -155,7 +152,6 @@ public class Menu {
                     CurrencyOperation currencyOp = new CurrencyOperation(currencyPair, fromAmount);
                     System.out.println("\n" + currencyOp);
                     history.add(currencyOp);
-                    History.saveHistory(history);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 } finally {
